@@ -11,10 +11,10 @@ const Home = () => {
         text: '',
         status: ''
     })
-
+ const url =" https://laravel-1103-api.herokuapp.com/"
     useEffect(() => {
          setLoading(true)
-        axios.get('http://127.0.0.1:8000/api/hotels')
+        axios.get('https://laravel-hotels.herokuapp.com/api/hotels')
         .then(resp => {
             setLoading(false)
             if(resp.data.success) {

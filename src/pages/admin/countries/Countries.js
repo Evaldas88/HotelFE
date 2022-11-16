@@ -17,7 +17,7 @@ const Countries = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('http://127.0.0.1:8000/api/countries', {
+        axios.get('https://laravel-hotels.herokuapp.com/api/countries', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -36,7 +36,7 @@ const Countries = () => {
 
     const handleDelete = (id) => {
         setLoading(true)
-        axios.delete('http://127.0.0.1:8000/api/countries/' + id, {
+        axios.delete('https://laravel-hotels.herokuapp.com/api/countries/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((resp) => {

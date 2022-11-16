@@ -17,7 +17,7 @@ const Hotels = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('http://127.0.0.1:8000/api/hotels', {
+        axios.get('https://laravel-hotels.herokuapp.com/api/hotels', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -39,7 +39,7 @@ const Hotels = () => {
     const handleDelete = (id) => {
         console.log(id)
         setLoading(true)
-        axios.delete('http://127.0.0.1:8000/api/hotels/' + id, {
+        axios.delete('https://laravel-hotels.herokuapp.com/api/hotels/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((resp) => {

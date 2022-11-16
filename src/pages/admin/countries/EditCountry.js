@@ -21,7 +21,7 @@ const EditCountry = () => {
     useEffect(() => {
         setLoading(true)
 
-        axios.get('http://127.0.0.1:8000/api/countries/' + id)
+        axios.get('https://laravel-hotels.herokuapp.com/api/countries/' + id)
         .then(resp => {
             setLoading(false)
             setForm({
@@ -47,7 +47,7 @@ const EditCountry = () => {
         e.preventDefault()
         setLoading(true)
 
-        axios.put('http://127.0.0.1:8000/api/countries/' + id, form, {
+        axios.put('https://laravel-hotels.herokuapp.com/api/countries/' + id, form, {
             headers: { 
                 Authorization: `Bearer ${token}`
             }
