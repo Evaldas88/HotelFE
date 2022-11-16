@@ -11,9 +11,9 @@ const HotelCard = (props) => {
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <div className="d-flex gap-5 flex-wrap">
 
-                        {data.photo && (
+                        {data.image && (
                             <div className=" card" style={{ width: "18rem" }}>
-                                <img src={data.photo} alt={data.name} className="card-img-top" />
+                                <img src={data.image} alt={data.name} className="card-img-top" />
                                 <div className="card-body">
                                     <h5>{data.name}</h5>
                                     <h4 className="card-title text-center"><strong>€ {data.price}</strong></h4>

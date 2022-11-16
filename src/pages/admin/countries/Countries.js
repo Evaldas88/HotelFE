@@ -14,10 +14,10 @@ const Countries = () => {
     const [reload, setReload] = useState(false)
     // const navigate = useNavigate();
     const token = localStorage.getItem('token')
-
+     const url = 'http://127.0.0.1:8000/api/countries'
     useEffect(() => {
         setLoading(true)
-        axios.get('https://laravel-hotels.herokuapp.com/api/countries', {
+        axios.get( url, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -36,7 +36,7 @@ const Countries = () => {
 
     const handleDelete = (id) => {
         setLoading(true)
-        axios.delete('https://laravel-hotels.herokuapp.com/api/countries/' + id, {
+        axios.delete( url + '/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((resp) => {
@@ -58,7 +58,7 @@ const Countries = () => {
     return (
         <>
             <Header />
-            {loading && (<div className="loading">Kraunasi...</div>)}
+            {loading && (<div className="loading">Loading...</div>)}
             <div className="pt-5 container">
                 <div className="  mb-5">
                     <h2>Country</h2>

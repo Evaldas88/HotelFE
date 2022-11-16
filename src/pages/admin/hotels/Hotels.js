@@ -14,10 +14,13 @@ const Hotels = () => {
     const [reload, setReload] = useState(false)
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
+    const url = 'http://127.0.0.1:8000/api/hotels'
+
+
 
     useEffect(() => {
         setLoading(true)
-        axios.get('https://laravel-hotels.herokuapp.com/api/hotels', {
+        axios.get(url, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -39,7 +42,7 @@ const Hotels = () => {
     const handleDelete = (id) => {
         console.log(id)
         setLoading(true)
-        axios.delete('https://laravel-hotels.herokuapp.com/api/hotels/' + id, {
+        axios.delete(url +'/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((resp) => {
@@ -90,7 +93,7 @@ const Hotels = () => {
                             {hotels.map(hotel => (
                                 <tr key={hotel.id} className="text-center">
                                     <td className="text-center">{hotel.id}</td>
-                                    <td  ><img src={hotel.photo} alt={hotel.name} style={{ width: "6rem" }} /></td>
+                                    <td  ><img src={hotel.image} alt={hotel.name} style={{ width: "6rem" }} /></td>
                                     <td>{hotel.name}</td>
                                     <td>{hotel.price}</td>
                                     <td>{hotel.travel_duration}</td>

@@ -17,11 +17,12 @@ const EditCountry = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
+    const url ='http://127.0.0.1:8000/api/countries/'
 
     useEffect(() => {
         setLoading(true)
 
-        axios.get('https://laravel-hotels.herokuapp.com/api/countries/' + id)
+        axios.get( url + id)
         .then(resp => {
             setLoading(false)
             setForm({
@@ -47,7 +48,7 @@ const EditCountry = () => {
         e.preventDefault()
         setLoading(true)
 
-        axios.put('https://laravel-hotels.herokuapp.com/api/countries/' + id, form, {
+        axios.put( url + id, form, {
             headers: { 
                 Authorization: `Bearer ${token}`
             }

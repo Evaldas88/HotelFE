@@ -8,7 +8,7 @@ const NewHotel = () => {
     const [form, setForm] = useState({
         name: '',
         price: '',
-        photo: '',
+        image: '',
         travel_duration: '',
         country_id: 0
     })
@@ -22,8 +22,8 @@ const NewHotel = () => {
     const token = localStorage.getItem('token')
 
     const handleFormChange = (e) => {
-        if(e.target.name === 'photo')
-            setForm({ ...form, [e.target.name]: e.target.files[0] })
+        if(e.target.name === 'image')
+            setForm({ ...form, [e.target.name]: e.target.value  })
         else
             setForm({ ...form, [e.target.name]: e.target.value })
     }
@@ -31,7 +31,7 @@ const NewHotel = () => {
     useEffect(() => {
         setLoading(true)
 
-        axios.get('https://laravel-hotels.herokuapp.com/api/countries')
+        axios.get('http://127.0.0.1:8000/api/countries')
         .then(resp => {
             setLoading(false)
             setCountries(resp.data.message)
@@ -41,7 +41,7 @@ const NewHotel = () => {
             if(err.response.data)
                 setMessage({text: err.response.data.message, status: 'danger'})
             else 
-                setMessage({text: 'Serveris miręs', status: 'danger'})
+                setMessage({text: 'Server dead', status: 'danger'})
             //navigate('/login')
         })
     }, [])
@@ -55,7 +55,7 @@ const NewHotel = () => {
             formData.append(key, form[key])
         }
 
-        axios.post('https://laravel-hotels.herokuapp.com/api/hotels', formData, {
+        axios.post('http://127.0.0.1:8000/api/hotels', formData, {
             headers: { 
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data', 
@@ -64,7 +64,7 @@ const NewHotel = () => {
         .then(resp => {
             if (resp.status === 200) {
                 setLoading(false)
-                setMessage({text: 'Viešbutis sėkmingai išssaugotas', status: 'success'})
+                setMessage({text: 'Hotel saved', status: 'success'})
                 setTimeout(() => navigate('/admin/hotels'), 2000)
             }
         })
@@ -74,7 +74,7 @@ const NewHotel = () => {
             if(err.response.data)
                 setMessage({text: err.response.data.message, status: 'danger'})
             else 
-                setMessage({text: 'Serveris miręs', status: 'danger'})
+                setMessage({text: 'Server dead', status: 'danger'})
         })
     }
 
@@ -92,19 +92,19 @@ const NewHotel = () => {
                 <form onSubmit={handleFormSubmit}>
                     <div className="form-group">
                         <label className="mt-2">Hotel Name:</label>
-                        <input type="text" name="name" className="form-control m-1" onChange={handleFormChange} value={form.name} />
+                        <input type="text" name="name" className="form-control m-1" onChange={handleFormChange}   />
                     </div>
                     <div className="form-group">
                         <label className="mt-2">Price:</label>
-                        <input type="number" name="price" className="form-control mt-1" onChange={handleFormChange} value={form.price} />
+                        <input type="number" name="price" className="form-control mt-1" onChange={handleFormChange}   />
                     </div>
                     <div className="form-group">
                         <label className="mt-2">Photo:</label>
-                        <input type="file" name="photo" className="form-control-file mt-1" onChange={handleFormChange} />
+                        <input type="text" name="image" className="form-control  mt-1" onChange={handleFormChange} />
                     </div>
                     <div className="form-group">
                         <label className="mt-2">Trip Duration :</label>
-                        <input type="text" name="travel_duration" className="form-control mt-1" onChange={handleFormChange} value={form.travel_duration} />
+                        <input type="text" name="travel_duration" className="form-control mt-1" onChange={handleFormChange}   />
                     </div>
                     <div className="form-group">
                         <label className="mt-2">Country:</label>

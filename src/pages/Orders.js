@@ -15,7 +15,7 @@ const Orders = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('https://laravel-hotels.herokuapp.com/api/orders/', {
+        axios.get('http://127.0.0.1:8000/api/orders/', {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(resp => {

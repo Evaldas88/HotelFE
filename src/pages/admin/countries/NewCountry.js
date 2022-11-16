@@ -16,8 +16,7 @@ const NewCountry = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
-
-    const handleFormChange = (e) => {
+     const handleFormChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
@@ -25,7 +24,7 @@ const NewCountry = () => {
         e.preventDefault()
         setLoading(true)
 
-        axios.post('https://laravel-hotels.herokuapp.com/countries', form, {
+        axios.post('http://127.0.0.1:8000/api/countries', form, {
             headers: { 
                 Authorization: `Bearer ${token}`
             }
@@ -59,11 +58,11 @@ const NewCountry = () => {
                 <form onSubmit={handleFormSubmit}>
                     <div className="form-group">
                         <label  className=" mt-2">Country name:</label>
-                        <input type="text" name="name" className="form-control mt-2" onChange={handleFormChange} value={form.name} />
+                        <input type="text" name="name" className="form-control mt-2" onChange={handleFormChange}   />
                     </div>
                     <div className="form-group">
                         <label  className="  mt-2">Season:</label>
-                        <input type="text" name="season" className="form-control mt-2" onChange={handleFormChange} value={form.season} />
+                        <input type="text" name="season" className="form-control mt-2" onChange={handleFormChange}  />
                     </div>
                     <div className="form-group mt-2">
                         <button type="submit" className="btn btn-dark">Enter</button>

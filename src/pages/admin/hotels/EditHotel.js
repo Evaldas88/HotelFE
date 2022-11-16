@@ -9,7 +9,7 @@ const EditHotel = () => {
     const [form, setForm] = useState({
         name: '',
         price: '',
-        photo: '',
+        image: '',
         travel_duration: '',
         country_id: 0
     })
@@ -24,10 +24,9 @@ const EditHotel = () => {
     const token = localStorage.getItem('token')
 
     const handleFormChange = (e) => {
-        if(e.target.name === 'photo')
-            setForm({ ...form, [e.target.name]: e.target.files[0] })
-        else
-            setForm({ ...form, [e.target.name]: e.target.value })
+         
+            setForm({ ...form, [e.target.name]: e.target.value } )
+        
     }
 
     useEffect(() => {
@@ -53,12 +52,12 @@ const EditHotel = () => {
             setForm({
                 name: resp.data.message[0].name,
                 price: resp.data.message[0].price,
-                photo: '',
+                image: resp.data.message[0].image,
                 travel_duration: resp.data.message[0].travel_duration,
                 country_id: resp.data.message[0].country_id || ''
+       
             })
-            if(resp.data.message[0].photo)
-                setImage('http://localhost:8000' + resp.data.message[0].photo)
+            console.log(resp);
         })
         .catch(err => {
             setLoading(false)
@@ -68,7 +67,7 @@ const EditHotel = () => {
                 setMessage({text: 'Server dead', status: 'danger'})
             //navigate('/login')
         })
-    }, [])
+    }, [id])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
@@ -79,7 +78,7 @@ const EditHotel = () => {
             formData.append(key, form[key])
         }
 
-        axios.post('https://laravel-hotels.herokuapp.com/api/hotels/' + id, formData, {
+        axios.post('http://127.0.0.1:8000/api/hotels/' + id, formData, {
             headers: { 
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data', 
@@ -123,14 +122,15 @@ const EditHotel = () => {
                         <input type="number" name="price" className="form-control  mt-2" onChange={handleFormChange} value={form.price} />
                     </div>
                     <div className="form-group">
-                        <label className=" mt-3">Photo:</label>
-                        <input type="file" name="photo" className="form-control-file  mt-2" onChange={handleFormChange} />
-                        {image && <img className="previewImage  mt-2" src={image} style={{ width: "6rem" }}/>}
+                        <label className=" mt-3">Trip duration:</label>
+                        <input type="text" name="travel_duration" className="form-control mt-2" onChange={handleFormChange} value={form.travel_duration} />
                     </div>
                     <div className="form-group">
-                        <label className=" mt-3">Trip duration:</label>
-                        <input type="text" name="travel_duration  mt-2" className="form-control" onChange={handleFormChange} value={form.travel_duration} />
+                        <label className=" mt-3">Photo:</label>
+                        <input type="text" name="image" className="form-control mt-2" onChange={handleFormChange}  value={form.image}/>
+                        {image && <img className=" mt-2" src={image} style={{ width: "6rem" }}/>}
                     </div>
+                    
                     <div className="form-group">
                         <label className=" mt-3">Country:</label>
                         <select name="country_id" className="form-control mt-2" onChange={handleFormChange} value={form.country_id}>
