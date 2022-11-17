@@ -24,7 +24,7 @@ const NewCountry = () => {
         e.preventDefault()
         setLoading(true)
 
-        axios.post('http://127.0.0.1:8000/api/countries', form, {
+        axios.post('https://laravel-hotels.herokuapp.com/api/countries', form, {
             headers: { 
                 Authorization: `Bearer ${token}`
             }

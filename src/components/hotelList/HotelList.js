@@ -17,7 +17,7 @@ const HotelsList = (props) => {
     const handleOrder = (id) => {
         setLoading(true)
 
-        axios.post('http://127.0.0.1:8000/api/orders', {
+        axios.post('https://laravel-hotels.herokuapp.com/api/orders', {
             hotel_id: id
         }, 
         {

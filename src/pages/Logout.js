@@ -9,7 +9,7 @@ const Logout = (props) => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         if(token) {
-            axios.post('http://127.0.0.1:8000/api/logout', {}, {
+            axios.post('https://laravel-hotels.herokuapp.com/api/logout', {}, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then(() => {
