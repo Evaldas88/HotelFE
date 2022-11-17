@@ -33,7 +33,7 @@ const Register = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-        axios.post('https://laravel-hotels.herokuapp.com/api/register', registerForm)
+        axios.post('http://127.0.0.1:8000/api/register', registerForm)
             .then(resp => {
                 if (resp.status === 200) {
                     localStorage.setItem('token', resp.data.message.token)

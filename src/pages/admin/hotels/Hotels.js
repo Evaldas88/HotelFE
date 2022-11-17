@@ -14,7 +14,7 @@ const Hotels = () => {
     const [reload, setReload] = useState(false)
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
-    const url = 'https://laravel-hotels.herokuapp.com/api/hotels'
+    const url = 'http://127.0.0.1:8000/api/hotels'
 
 
 

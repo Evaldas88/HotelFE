@@ -31,7 +31,7 @@ const NewHotel = () => {
     useEffect(() => {
         setLoading(true)
 
-        axios.get('https://laravel-hotels.herokuapp.com/api/countries')
+        axios.get('http://127.0.0.1:8000/api/countries')
         .then(resp => {
             setLoading(false)
             setCountries(resp.data.message)
@@ -55,7 +55,7 @@ const NewHotel = () => {
             formData.append(key, form[key])
         }
 
-        axios.post('https://laravel-hotels.herokuapp.com/api/hotels', formData, {
+        axios.post('http://127.0.0.1:8000/api/hotels', formData, {
             headers: { 
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data', 

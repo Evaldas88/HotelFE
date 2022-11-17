@@ -17,13 +17,14 @@ const Orders = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get('https://laravel-hotels.herokuapp.com/api/orders/all', {
+        axios.get('http://127.0.0.1:8000/api/orders/all', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
                 setLoading(false)
                 setReload(false)
                 setOrders(resp.data.message)
+                console.log(resp.data.message)
             })
             .catch(err => {
                 setLoading(false)
@@ -37,7 +38,7 @@ const Orders = () => {
 
     const handleDelete = (id) => {
         setLoading(true)
-        axios.delete('https://laravel-hotels.herokuapp.com/api/orders/' + id, {
+        axios.delete('http://127.0.0.1:8000/api/orders/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -57,7 +58,7 @@ const Orders = () => {
 
     const handleStatus = (id) => {
         setLoading(true)
-        axios.get('https://laravel-hotels.herokuapp.com/api/orders/' + id, {
+        axios.get('http://127.0.0.1:8000/api/orders/' + id, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(resp => {
@@ -91,6 +92,7 @@ const Orders = () => {
                     <table className="table ">
                         <thead>
                             <tr>
+                                <th>User</th>
                                 <th>Hotel</th>
                                 <th>Price</th>
                                 <th>Duration</th>
@@ -103,6 +105,7 @@ const Orders = () => {
                         <tbody>
                             {orders.map(order => (
                                 <tr key={order.id}>
+                                    <td>{order.user_id}</td>
                                     <td>{order.hotel_name}</td>
                                     <td>{order.price}</td>
                                     <td>{order.travel_duration}</td>

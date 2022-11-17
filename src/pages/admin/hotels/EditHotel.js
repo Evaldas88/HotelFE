@@ -32,7 +32,7 @@ const EditHotel = () => {
     useEffect(() => {
         setLoading(true)
 
-        axios.get('https://laravel-hotels.herokuapp.com/api/countries')
+        axios.get('http://127.0.0.1:8000/api/countries')
         .then(resp => {
             setLoading(false)
             setCountries(resp.data.message)
@@ -46,7 +46,7 @@ const EditHotel = () => {
             //navigate('/login')
         })
 
-        axios.get('https://laravel-hotels.herokuapp.com/api/hotels/' + id)
+        axios.get('http://127.0.0.1:8000/api/hotels/' + id)
         .then(resp => {
             setLoading(false)
             setForm({
@@ -78,7 +78,7 @@ const EditHotel = () => {
             formData.append(key, form[key])
         }
 
-        axios.post('https://laravel-hotels.herokuapp.com/api/hotels/' + id, formData, {
+        axios.post('http://127.0.0.1:8000/api/hotels/' + id, formData, {
             headers: { 
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data', 

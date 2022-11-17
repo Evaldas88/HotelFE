@@ -17,7 +17,7 @@ const EditCountry = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
-    const url ='https://laravel-hotels.herokuapp.com/api/countries/'
+    const url ='http://127.0.0.1:8000/api/countries/'
 
     useEffect(() => {
         setLoading(true)

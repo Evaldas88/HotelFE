@@ -33,7 +33,7 @@ const Login = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-        axios.post('https://laravel-hotels.herokuapp.com/api/login', loginForm)
+        axios.post('http://127.0.0.1:8000/api/login', loginForm)
             .then(resp => {
                 setLoading(false)
                 if (resp.status === 200) {
