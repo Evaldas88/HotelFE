@@ -4,7 +4,7 @@ import Header from '../components/header/Header'
 import Message from '../components/message/Message'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ setUser }) => {
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: ''
@@ -39,6 +39,11 @@ const Login = () => {
                 if (resp.status === 200) {
                     localStorage.setItem('token', resp.data.message.token)
                     localStorage.setItem('user_role', resp.data.message.role)
+                    setUser({
+                        loggedIn: true,
+                        token: resp.data.message.token,
+                        role: resp.data.message.role
+                    })
                     navigate('/')
                 }
             })
@@ -53,7 +58,7 @@ const Login = () => {
 
     return (
         <>
-            {loading && (<div className="loading">Kraunasi...</div>)}
+            {loading && (<div className="loading"> ...</div>)}
             <Header />
             <div  className= "container">
                 <div className="mx-auto  my-5 col-6 d-flex aligns-items-center justify-content-center">

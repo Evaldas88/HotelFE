@@ -28,7 +28,7 @@ const Router = () => {
             setUser({
                 loggedIn: true,
                 token,
-                role
+                role,
             })
         }
     }, [])
@@ -40,12 +40,15 @@ const Router = () => {
     }
 
     return (
+        <>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                {!user.loggedIn && <Route path="/login" element={<Login />} /> }
+            <Route path="/orders" element={<Orders />}   /> 
+               
+                {!user.loggedIn && <Route path="/login" element={<Login setUser={setUser} />} /> }
                 {!user.loggedIn && <Route path="/register" element={<Register />} /> }
-                {user.loggedIn && user.role === '0' && (
+                {user.loggedIn && user.role == '0' && (
                     <>
                         <Route path="/admin/orders" element={<OrdersAdmin />} /> 
                         <Route path="/admin/hotels" element={<Hotels />} /> 
@@ -56,14 +59,11 @@ const Router = () => {
                         <Route path="/admin/countries/edit/:id" element={<EditCountry />} /> 
                     </>
                 )}
-                {user.loggedIn && (
-                    <>
-                        <Route path="/orders" element={<Orders />} /> 
-                    </>
-                )}
+              
                 <Route path="/logout" element={<Logout logoutUser={logoutUser} />} /> 
             </Routes>
         </BrowserRouter>
+        </>
     )
 }
 
