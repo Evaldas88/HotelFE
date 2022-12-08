@@ -12,8 +12,7 @@ const Countries = () => {
     })
     const [loading, setLoading] = useState(true)
     const [reload, setReload] = useState(false)
-    // const navigate = useNavigate();
-    const token = localStorage.getItem('token')
+     const token = localStorage.getItem('token')
      const url = 'http://127.0.0.1:8000/api/countries'
     useEffect(() => {
         setLoading(true)
@@ -30,8 +29,7 @@ const Countries = () => {
                     setMessage({ text: err.response.data.message, status: 'danger' })
                 else
                     setMessage({ text: 'Server dead', status: 'danger' })
-                //navigate('/login')
-            })
+             })
     }, [reload])
 
     const handleDelete = (id) => {
@@ -51,8 +49,7 @@ const Countries = () => {
                     setMessage({ text: err.response.data.message, status: 'danger' })
                 else
                     setMessage({ text: 'Server dead', status: 'danger' })
-                //navigate('/login')
-            })
+             })
     }
 
     return (
