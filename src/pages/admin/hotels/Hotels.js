@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Header from '../../../components/header/Header'
 import Message from '../../../components/message/Message'
 import axios from 'axios'
@@ -12,8 +12,7 @@ const Hotels = () => {
     })
     const [loading, setLoading] = useState(true)
     const [reload, setReload] = useState(false)
-    const navigate = useNavigate();
-    const token = localStorage.getItem('token')
+     const token = localStorage.getItem('token')
     const url = 'http://127.0.0.1:8000/api/hotels'
 
 
@@ -35,8 +34,7 @@ const Hotels = () => {
                     setMessage({ text: err.response.data.message, status: 'danger' })
                 else
                     setMessage({ text: 'server dead', status: 'danger' })
-                //navigate('/login')
-            })
+             })
     }, [reload])
 
     const handleDelete = (id) => {
