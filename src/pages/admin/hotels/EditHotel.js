@@ -43,8 +43,7 @@ const EditHotel = () => {
                 setMessage({text: err.response.data.message, status: 'danger'})
             else 
                 setMessage({text: 'Server dead', status: 'danger'})
-            //navigate('/login')
-        })
+         })
 
         axios.get('http://127.0.0.1:8000/api/hotels/' + id)
         .then(resp => {
@@ -65,8 +64,7 @@ const EditHotel = () => {
                 setMessage({text: err.response.data.message, status: 'danger'})
             else 
                 setMessage({text: 'Server dead', status: 'danger'})
-            //navigate('/login')
-        })
+         })
     }, [id])
 
     const handleFormSubmit = (e) => {
