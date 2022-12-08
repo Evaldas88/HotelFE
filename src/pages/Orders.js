@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Header from '../components/header/Header'
+ import Header from '../components/header/Header'
 import Message from '../components/message/Message'
 import axios from 'axios'
 
@@ -30,8 +29,7 @@ const Orders = () => {
                 setMessage({text: err.response.data.message, status: 'danger'})
             else 
                 setMessage({text: 'Server dead', status: 'danger'})
-            //navigate('/login')
-        })
+         })
     }, [])
 
     return (
